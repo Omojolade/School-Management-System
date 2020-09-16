@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <title>Sign up</title>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper" style="background-color: black">
+        <div class="container">
+            <a href="#" class="brand-logo">School Management System</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a th:href="@{/auth/home}">Home</a></li>
+                <li><a th:href="@{/profile}">Profile</a></li>
+                <li><a th:href="@{/auth/login}">Login</a></li>
+                <li><a th:href="@{/auth/login}">Logout</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+</nav>
+<div>
+    <h4 th:text="'Hi '+ ${person.getFirstName()} + ' ' + ${person.getLastName()}" ></h4>
+</div>
+    <div style="margin-top: 250px;margin-left: 300px; font-size:50px">
+        Welcome to Student Information System
+
+    </div>
+
+    <div style="margin-left: 600px">
+    <a th:href="@{/courses/}">
+        <button class="btn waves-effect waves-light black" type="submit" name="action">Click Here To Register Courses!
+            <i class="material-icons right"></i>
+        </button>
+    </a>
+</div>
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

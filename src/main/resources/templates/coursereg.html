@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <title>Sign in</title>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper" style="background-color: black">
+        <div class="container">
+            <a href="#" class="brand-logo">School Management System</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a th:href="@{/auth/home}">Home</a></li>
+                <li><a th:href="@{/auth/login}">Login</a></li>
+                <li><a th:href="@{/auth/login}">Logout</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+
+<div class="container" style="margin-top: 5rem">
+    <h5>Course Registration</h5>
+    <div class="row">
+        <form class="col s12" style="margin-top: 2rem" method="post" id="swag" th:action="@{/courses/new}" th:object="${mewCourse}">
+            <div class="row">
+                <div class="input-field col s8">
+<!--                    <input id="coursecode" placeholder="Course Code" type="text" class="validate" th:field="*{courseCode}">-->
+                    <select name="coursecode" class="browser-default" id="coursecode" th:field="*{courseCode}" form="swag">
+                        <option value="" disabled selected>Choose your Course Code</option>
+                        <option value="geg 101">GEG 101</option>
+                        <option value="geg 103">GEG 103</option>
+                        <option value="geg 105">GEG 105</option>
+                        <option value="meg 101">MEG 101</option>
+                        <option value="meg 102">MEG 102</option>
+                        <option value="ceg 103">CEG 103</option>
+                        <option value="eeg 105">EEG 105</option>
+                        <option value="meg 201">MEG 201</option>
+                    </select>
+                    <label for="coursecode"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+<!--                    <input id="coursename" placeholder="Course Name" type="text" class="validate" th:field="*{courseName}">-->
+                    <select name="coursename" class="browser-default" id="coursename" th:field="*{courseName}" form="swag">
+                        <option value="" disabled selected>Choose your Course Name</option>
+                        <option value="1">Introduction to Java</option>
+                        <option value="2">Basics of Computer Science</option>
+                        <option value="3">Learn Java in 2- months</option>
+                        <option value="4">Introduction to Spring-Boot</option>
+                        <option value="5">Front-End Basics</option>
+                        <option value="6">Android- Introduction to Kotlin</option>
+                        <option value="7">Engineering Maths</option>
+                        <option value="8">Learn Manners</option>
+                    </select>
+                    <label for="coursename"></label>
+                </div>
+            </div>
+            <br>
+            <button class="btn waves-effect waves-light black" type="submit" name="action">Register
+                <i class="material-icons right"></i>
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 5rem">
+
+<table >
+    <h5>First Semester</h5>
+    <thead>
+    <tr>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="course: ${courses}">
+        <td th:text="${course.getCourseCode()}"></td>
+        <td th:text="${course.getCourseName()}"></td>
+        <td>
+        <button class="btn waves-effect waves-light black" type="submit" name="action">Edit
+            <i class="material-icons right"></i>
+        </button>
+        </td>
+        <td>
+            <form method = "post" th:action ="@{delete/{id}(id = ${course.getId()})}" th:object="${courses}">
+                <button class="btn waves-effect waves-light black" type="submit" name="action" >Delete
+                    <i class="material-icons right"></i>
+                </button>
+            </form>
+        </td>
+    </tr>
+
+    </tbody>
+
+</table>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
+</body>
+</html>
