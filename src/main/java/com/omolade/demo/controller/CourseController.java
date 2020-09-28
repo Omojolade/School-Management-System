@@ -29,10 +29,23 @@ public class CourseController {
     Add new courses
      */
     @PostMapping("/new")
-    public String addCourse(HttpSession session, @Valid Course course) {
+    public String addCourse(HttpSession session, @Valid Course course, Model model) {
         Object personObj = session.getAttribute("person");
 
         if(personObj==null) return "redirect:/auth/login";
+
+//        if(course.getCourseName().equals("") || course.getCourseCode().equals("")) {
+//            model.addAttribute("regmsg", "Select valid course name and code");
+        if( course.getCourseCode().equals("")) {
+            model.addAttribute("regmsg", "Select valid course name and code");
+
+
+            model.addAttribute("person", (Person) personObj);
+            model.addAttribute("courses", courseService.getAllCourses());
+
+            model.addAttribute("mewCourse",new Course());
+            return "coursereg";
+        }
 
         List<Person> people = course.getPersons();
 
@@ -53,10 +66,6 @@ public class CourseController {
         if(personObj==null) return "redirect:/auth/login";
         model.addAttribute("person", (Person) personObj);
         model.addAttribute("courses", courseService.getAllCourses());
-
-//        List<Course> courses =
-
-//        model.addAttribute("studentcourses", courseService.getCoursesByPerson((Person) personObj));
         model.addAttribute("mewCourse",new Course());
         return "coursereg";
     }

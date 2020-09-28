@@ -1,5 +1,6 @@
 package com.omolade.demo.serviceimpl;
 
+import com.omolade.demo.model.Course;
 import com.omolade.demo.model.Person;
 import com.omolade.demo.repository.PersonRepository;
 import com.omolade.demo.service.PersonService;
@@ -30,6 +31,22 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person getPersonByEmail(String email) {
         return personRepository.findPersonByEmail(email).orElse(null);
+    }
+
+    @Override
+    public List<Person> getAllPersons() {
+        List<Person> persons = (List<Person>) personRepository.findAll();
+        return persons;
+    }
+
+    @Override
+    public List<Person> getAllPersonByRole(String role) {
+        return personRepository.findAllPersonByRole(role);
+    }
+
+    @Override
+    public Person editPerson(Person person) {
+        return personRepository.save(person);
     }
 
 

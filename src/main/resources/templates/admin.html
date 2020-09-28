@@ -1,10 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <title>Admin</title>
 </head>
 <body>
-<h1>Hello Admin</h1>
+<nav>
+    <div class="nav-wrapper" style="background-color: black">
+        <div class="container">
+            <a href="#" class="brand-logo">School Management System</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+<!--                <li><a th:href="@{/auth/login}">login</a></li>-->
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container" style="margin-top: 5rem">
+    <a th:href="@{/auth/student}">
+    <button style="margin-left: 800px" class="btn waves-effect waves-light black" type="submit" name="action">View All Students
+        <i class="material-icons right"></i>
+    </button></a>
+    <h4>Student Registration</h4>
+
+    <div th:if="${success != null}">
+        <p style="color: green" th:text="${success}"></p>
+    </div>
+    <hr col s8/>
+    <div class="row">
+
+
+
+        <form class="col s12" style="margin-top: 2rem" method="post" th:action="@{/auth/admin}" th:object="${person}">
+
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Email" id="email" type="email" class="validate" th:field="*{email}">
+                    <label for="email"></label>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Username" id="username" type="text" class="validate" th:field="*{username}">
+                    <label for="username"></label>
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Password" id="password" type="password" class="validate" th:field="*{password}">
+                    <label for="password"></label>
+                </div>
+
+            </div>
+
+<!--            <div class="row">-->
+<!--                <div class="input-field col s8">-->
+<!--                    <input placeholder="ContactNo" id="contactNo" type="text" class="validate" th:field="*{contactNo}">-->
+<!--                    <label for="contactNo"></label>-->
+<!--                </div>-->
+
+<!--            </div>-->
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="MatricNo" id="matricNo" type="text" class="validate" th:field="*{matricNo}">
+                    <label for="matricNo"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Title" id="title" type="text" class="validate" th:field="*{title}">
+                    <label for="title"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Role" id="role" type="text" class="validate" th:field="*{role}">
+                    <label for="role"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="FirstName" id="firstName" type="text" class="validate" th:field="*{firstName}">
+                    <label for="firstName"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="LastName" id="lastName" type="text" class="validate" th:field="*{lastName}">
+                    <label for="lastName"></label>
+                </div>
+
+            </div>
+<!--            <div class="row">-->
+<!--                <div class="input-field col s8">-->
+<!--                    <input placeholder="Age" id="age" type="text" class="validate" th:field="*{age}">-->
+<!--                    <label for="contactNo"></label>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="MiddleName" id="middleName" type="text" class="validate" th:field="*{middleName}">
+                    <label for="middleName"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Religion" id="religion" type="text" class="validate" th:field="*{religion}">
+                    <label for="religion"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Date Of Birth" id="DoB" type="date" class="validate" th:field="*{DoB}">
+                    <label for="DoB"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Nationality" id="nationality" type="text" class="validate" th:field="*{nationality}">
+                    <label for="nationality"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Programme" id="programme" type="text" class="validate" th:field="*{programme}">
+                    <label for="programme"></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input placeholder="Permanent-Address" id="permanent-address" type="text" class="validate" th:field="*{permanentAddress}">
+                    <label for="permanent-address"></label>
+                </div>
+
+            </div>
+
+
+            <button class="btn waves-effect waves-light black" type="submit" name="action">Register
+                <i class="material-icons right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

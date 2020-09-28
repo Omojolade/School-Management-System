@@ -22,7 +22,12 @@ public class LoginController {
     }
 
     @GetMapping("home")
-    public String home() {
+    public String home(HttpSession session, Model model) {
+        Object personObj = session.getAttribute("person");
+
+        if(personObj==null) return "redirect:/auth/login";
+
+        model.addAttribute("person",(Person) personObj);
         return "home";
     }
 
@@ -40,13 +45,22 @@ public class LoginController {
             return "login";
         }
 
+
         Person addedPerson = personService.getPersonByEmail(person.getEmail());
 
         if(addedPerson == null|| !addedPerson.getPassword().equals(person.getPassword())){
-            model.addAttribute("invalid", "Invalid username or password");
+            model.addAttribute("invalid", "Invalid username or password or Not a registered student- contact the admin");
             return "login";
         }
-        addedPerson.setPassword("");
+
+        if(!addedPerson.getRole().toLowerCase().equals(person.getRole())){
+            model.addAttribute("invalid", "Invalid user role");
+            return "login";
+        }
+
+
+
+//        addedPerson.setPassword("");
         //System.out.println(person);
         session.setAttribute("person",addedPerson);
         model.addAttribute("person",addedPerson);

@@ -10,8 +10,8 @@ public interface CourseService {
     Course getCourseById(Long id);
     Course getCourseByCourseCode(String courseCode);
     List<Course> getAllCourses();
-    List<Course> getCoursesByPerson(Person person);
-    Course editCourse(Course course);
+   List<Course> getCoursesByPerson(Person person);
+//    Course editCourse(Course course);
     boolean deleteCourseById(Long id);
 
 //    void deleteCourse(Course course);

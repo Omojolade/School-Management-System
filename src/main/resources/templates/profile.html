@@ -14,19 +14,21 @@
             <a href="#" class="brand-logo">School Management System</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a th:href="@{/auth/home}">Home</a></li>
-                <li><a th:href="@{/auth/login}">Login</a></li>
+                <li><a href="#">Profile</a></li>
                 <li><a th:href="@{/auth/login}">Logout</a></li>
             </ul>
 
         </div>
     </div>
 </nav>
+
 <div class="container" style="margin-top: 5rem">
+    <p style="font-size: 20px;" th:text="'Welcome '+ ${person.getFirstName()} + ' ' + ${person.getLastName()}"></p>
 <table>
     <thead>
     <tr>
         <th>BioData</th>
-<!--        <th th:text="${person.getFirstName() + ' ' + person.getLastName()}"></th>-->
+
     </tr>
     </thead>
 
@@ -56,11 +58,7 @@
         <td th:text="${person.getMiddleName()}"></td>
 
     </tr>
-<!--    <tr>-->
-<!--        <td>Maiden Name</td>-->
-<!--        <td th:text="${person.getM()}"></td>-->
 
-<!--    </tr>-->
     <tr>
         <td>Religion:</td>
         <td th:text="${person.getReligion()}"></td>
@@ -90,6 +88,7 @@
     <tr>
         <td>Permanent- Address:</td>
         <td th:text="${person.getPermanentAddress()}"></td>
+
     </tr>
     </tbody>
 </table>

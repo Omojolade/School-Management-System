@@ -12,11 +12,11 @@
     <div class="nav-wrapper" style="background-color: black">
         <div class="container">
             <a href="#" class="brand-logo">School Management System</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a th:href="@{/auth/home}">Home</a></li>
-                <li><a th:href="@{/auth/login}">Login</a></li>
-                <li><a th:href="@{/auth/login}">Logout</a></li>
-            </ul>
+<!--            <ul id="nav-mobile" class="right hide-on-med-and-down">-->
+<!--                <li><a th:href="@{/auth/home}">Home</a></li>-->
+<!--                <li><a th:href="@{/auth/login}">Login</a></li>-->
+<!--                <li><a th:href="@{/auth/login}">Logout</a></li>-->
+<!--            </ul>-->
 
         </div>
     </div>
@@ -26,7 +26,7 @@
 <div class="container" style="margin-top: 5rem">
     <h4>Login</h4>
     <div th:if="${invalid != null}">
-        <p style="color: tomato" th:text="${invalid}"></p>
+        <p style="color: #ff0000" th:text="${invalid}"></p>
     </div>
     <hr />
     <div class="row">

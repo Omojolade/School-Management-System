@@ -7,7 +7,7 @@
 
     <title>Sign up</title>
 </head>
-<body>
+<body style="background-image: url('../static/img/pexels-pixabay-256541.jpg'); background-size: cover; width: 100%; display: block">
 <nav>
     <div class="nav-wrapper" style="background-color: black">
         <div class="container">
@@ -15,7 +15,7 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a th:href="@{/auth/home}">Home</a></li>
                 <li><a th:href="@{/profile}">Profile</a></li>
-                <li><a th:href="@{/auth/login}">Login</a></li>
+<!--                <li><a th:href="@{/auth/login}">Login</a></li>-->
                 <li><a th:href="@{/auth/login}">Logout</a></li>
             </ul>
 
@@ -25,15 +25,18 @@
 
 
 </nav>
-<div>
-    <h4 th:text="'Hi '+ ${person.getFirstName()} + ' ' + ${person.getLastName()}" ></h4>
-</div>
+<!--<div style="margin-top: 200px;margin-left: 300px; font-size:50px">-->
+<!--    -->
+<!--</div>-->
+
     <div style="margin-top: 250px;margin-left: 300px; font-size:50px">
+        <p style="margin-left: 200px" th:text="'Hi '+ ${person.getFirstName()} + ' ' + ${person.getLastName()}" >hi</p>
         Welcome to Student Information System
 
     </div>
 
-    <div style="margin-left: 600px">
+    <div style="margin-left: 550px">
+
     <a th:href="@{/courses/}">
         <button class="btn waves-effect waves-light black" type="submit" name="action">Click Here To Register Courses!
             <i class="material-icons right"></i>
