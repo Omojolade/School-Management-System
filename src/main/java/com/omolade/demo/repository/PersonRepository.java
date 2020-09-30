@@ -14,5 +14,4 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
   List<Person> findAllPersonByRole(String role);
 //    List<Person> findAllByRoleAndAge
 
-
 }

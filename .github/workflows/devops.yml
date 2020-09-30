@@ -1,27 +1,63 @@
-name: Docker Image CI
+#name: Docker Image CI
+#on:
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Build the Docker image
+#        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+#
+#  push_to_registry:
+#    name: Push Docker image to Docker Hub
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out the repo
+#        uses: actions/checkout@v2
+#      - name: Push to Docker Hub
+#        uses: docker/build-push-action@v1
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#          repository: omojolade/schoolmanagementsystem
+#          tag_with_ref: true
+
+name: School Management System Project CI/CD with Maven
+
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+
 jobs:
-  build:
+  build-test:
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
-  push_to_registry:
-    name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
+        name: fetch repository content
+      - uses: actions/setup-java@v1
+        name: Set up JDK 11.0.8 for x64
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: omojolade/schoolmanagementsystem
-          tag_with_ref: true
+          java-version: '11.0.8'
+          architecture: x64
+      - name: Cache/Restore cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build and Test with Maven
+        run: |
+          mvn -B package --file pom.xml -Dspring.profiles.active=test
+          mkdir staging
+          cp target/*.jar staging
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: staging
